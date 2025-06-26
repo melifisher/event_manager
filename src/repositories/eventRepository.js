@@ -5,7 +5,7 @@ exports.findAll = async () => {
 };
 
 exports.create = async (name, start, end, roomId) => {
-  // Verificar si la habitación existe
+  //Verifica si la habitación existe
   const room = await prisma.room.findUnique({
     where: { id: roomId }
   });
@@ -14,7 +14,7 @@ exports.create = async (name, start, end, roomId) => {
     throw new Error('La habitación especificada no existe');
   }
 
-  // Verificar conflictos de horario
+  //Verifica conflictos de horario
   const conflictingEvents = await prisma.event.findMany({
     where: {
       roomId: roomId,
